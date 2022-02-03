@@ -46,7 +46,7 @@ class UserInfoTest {
     void changeOwnInfo()    {
 
         setUp();
-        
+
         userInfo.setInfo("Foo");
 
         String expected = "Foo";
