@@ -1,29 +1,35 @@
 public class UserInfo {
 
-    private String id;
-    private String name;
-    private String info;
+    private String fname;
+    private String lname;
+    private String pw;
+    private String phone;
+    private String address;
 
-    public UserInfo(String id, String name, String info)  {
+    public UserInfo(String fname, String lname, String pw, String phone, String address)  {
 
-        this.name = name;
-        this.info = info;
-
+        this.fname = fname;
+        this.lname = lname;
+        this.pw = pw;
+        this.phone = phone;
+        this.address = address;
 
     }
 
 
     public String getName() {
-        return name;
+        return fname + " " + lname;
     }
 
     public String getInfo() {
 
-        return info;
+        return pw + phone + address;
     }
 
-    public void setInfo(String info) {
+    public void setInfo(String pw, String phone, String address) {
 
-            this.info = info;
+            this.pw = pw;
+            this.phone = phone;
+            this.address = address;
     }
 }
