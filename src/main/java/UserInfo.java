@@ -1,9 +1,10 @@
 public class UserInfo {
 
+    private String id;
     private String name;
     private String info;
 
-    public UserInfo(String name, String info)  {
+    public UserInfo(String id, String name, String info)  {
 
         this.name = name;
         this.info = info;
@@ -19,5 +20,10 @@ public class UserInfo {
     public String getInfo() {
 
         return info;
+    }
+
+    public void setInfo(String info) {
+
+            this.info = info;
     }
 }
