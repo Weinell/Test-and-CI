@@ -10,7 +10,7 @@ class UserInfoTest {
     @BeforeEach
     void setUp() {
 
-        userInfo = new UserInfo("Oliver");
+        userInfo = new UserInfo("Oliver", "Hempel");
         List userList = new List();
 
 
@@ -28,8 +28,16 @@ class UserInfoTest {
         String name = userInfo.getName();
 
         System.out.println(name);
+    }
 
+    @Test
+    void seeUserDetails()   {
 
+        setUp();
+
+        String info = userInfo.getInfo();
+
+        System.out.println(info);
     }
 
 
