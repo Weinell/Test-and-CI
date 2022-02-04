@@ -6,21 +6,22 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UserInfoTest {
 
-    UserInfo userInfo;
+    User user;
+    Connection con;
+    DataMapper dataMapper;
 
     @BeforeEach
     void setUp() {
 
-        userInfo = new UserInfo("Nikolaj","Weinell", "poop", "4211111", "Hempel");
-        List userList = new List();
+        dataMapper = new DataMapper();
 
-        System.out.println("TESTINNNNGGGG");
-        Connection con = null;
         try {
             con = DBconnector.connection();
             String createTable = "CREATE TABLE IF NOT EXISTS `startcode_test`.`usertable` (\n" +
@@ -49,17 +50,40 @@ class UserInfoTest {
 
     @AfterEach
     void tearDown() {
+
+
+        try {
+            con = DBconnector.connection();
+            String dropTable = "DROP TABLE IF EXISTS startcode_test.usertable";
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
+
+    @Test
+    void getAllUsers()  {
+
+        List<User> users = dataMapper.getAllUsers();
+
+
+        assertEquals("Hans",users.get(1).getFname());
+
+    }
+
 
     @Test
     void seeUserNames() {
 
-        setUp();
-                
-        String expected = "Nikolaj Weinell";
-        String actual = userInfo.getName();
 
-        assertEquals(expected,actual);
+
+        List<User> users = new ArrayList<>();
+
+
+
+        //assertEquals(expected,actual);
     }
 
     @Test
@@ -67,9 +91,9 @@ class UserInfoTest {
 
         setUp();
         String expected = "poop4211111Hempel";
-        String actual = userInfo.getInfo();
+        //String actual = user.getInfo();
 
-        assertEquals(expected, actual);
+        //assertEquals(expected, actual);
     }
 
     @Test
@@ -77,13 +101,13 @@ class UserInfoTest {
 
         setUp();
 
-        userInfo.setInfo("Foo","42670043", "Fysikvej");
+        //user.setInfo("Foo","42670043", "Fysikvej");
 
 
         String expected = "Foo42670043Fysikvej";
-        String actual = userInfo.getInfo();
+        //String actual = user.getInfo();
 
-        assertEquals(expected, actual);
+       // assertEquals(expected, actual);
     }
 
 
